@@ -20,6 +20,8 @@ productsURLs = []
 for item in items:
     productsURLs.append("https://www.ldlc.com" + item.find('div', {'class': 'pic'}).find('a').attrs['href'])
 
+products = []
+
 for productURL in productsURLs:
 
     productURL = "https://www.ldlc.com/fr-be/fiche/PB00454442.html"
@@ -33,14 +35,21 @@ for productURL in productsURLs:
     priceFloat = float(''.join(price))
     stock = productBloc.find('div', {'class': 'modal-stock-web'}).text
 
-#Mock
-# title = "KFA2 GeForce RTX 3080 SG (1-Click OC) LHR"
-# desc = "La carte graphique gaming KFA2 GeForce RTX 3080"
-# price = "1 199.94"
-# stock = "Sous 7 jours"
+    #Mock
+    # title = "KFA2 GeForce RTX 3080 SG (1-Click OC) LHR"
+    # desc = "La carte graphique gaming KFA2 GeForce RTX 3080"
+    # price = "1 199.94"
+    # stock = "Sous 7 jours"
 
-print("")
-print(title)
-print(desc)
-print(priceFloat)
-print(stock)
+    print("")
+    print(title)
+    print(desc)
+    print(priceFloat)
+    print(stock)
+
+    products.append(Product(productURL, title, desc, priceFloat, stock))
+
+for product in products :
+    print("")
+    print(product.__dict__)
+    print(json.dumps(product.__dict__))
